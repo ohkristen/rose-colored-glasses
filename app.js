@@ -1,4 +1,6 @@
 'use strict';
+//Dependencies
+var fs = require('fs');
 
 function openFolderDialog(cb){
   var inputField = document.querySelector('#folderSelector')
@@ -14,7 +16,6 @@ function bindSelectionFolderClick(cb) {
   button.addEventListener('click', function (){
     openFolderDialog(cb)
   })
-
 }
 
 function hideSelectFolderButton(){
@@ -22,10 +23,20 @@ function hideSelectFolderButton(){
   button.style.display = 'none'
 }
 
+function findAllImageFiles (folderPath, cb) {
+  fs.readdir(folderPath, function (err, files){
+    if(err) {return cb (err, null)}
+    cb(null, files)
+  })
+}
+
 // Runs when the browser has loaded the page
 window.onload = function (){
   bindSelectionFolderClick(function (folderPath){
-    hideSelectFolderButton();
-    console.log(folderPath)
+    hideSelectFolderButton()
+    findAllImageFiles(folderPath, function(err, files){
+      console.log(err)
+      console.log(files)
+    })
   })
 }

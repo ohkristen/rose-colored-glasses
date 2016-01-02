@@ -1,5 +1,8 @@
 {
   "name": "rose-colored-glasses",
   "version": "1.0.0",
-  "main": "index.html"
+  "main": "index.html",
+  "dependencies": {
+    "fs": "0.0.2"
+  }
 }
