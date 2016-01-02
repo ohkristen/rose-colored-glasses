@@ -44,13 +44,30 @@ var imageMimeTypes = [
   'image/x-windows-bmp'
 ]
 
+function findImageFiles(files, folderPath, cb) {
+  var imageFiles = []
+  files.forEach(function (file){
+    var fullFilePath = path.resolve(folderPath, file)
+    var extension = mime.lookup(fullFilePath)
+    if(imageMimeTypes.indexOf(extension) !== -1) {
+      imageFiles.push({name: file, path: fullFilePath})
+    }
+    if(files.indexOf(file) === files.length-1){
+      cb(imageFiles)
+    }
+  })
+}
+
 // Runs when the browser has loaded the page
 window.onload = function (){
   bindSelectionFolderClick(function (folderPath){
     hideSelectFolderButton()
-    findAllImageFiles(folderPath, function(err, files){
-      console.log(err)
-      console.log(files)
+    findAllFiles(folderPath, function(err, files){
+      if(!err){
+        findImageFiles(files, folderPath, function (imageFiles){
+          console.log(imageFiles)
+        })
+      }
     })
   })
 }
