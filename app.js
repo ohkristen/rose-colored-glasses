@@ -1,6 +1,8 @@
 'use strict';
 //Dependencies
-var fs = require('fs');
+var fs      = require('fs');
+var mime    = require('mime');
+var path    = require('path');
 
 function openFolderDialog(cb){
   var inputField = document.querySelector('#folderSelector')
@@ -23,12 +25,24 @@ function hideSelectFolderButton(){
   button.style.display = 'none'
 }
 
-function findAllImageFiles (folderPath, cb) {
+function findAllFiles (folderPath, cb) {
   fs.readdir(folderPath, function (err, files){
     if(err) {return cb (err, null)}
     cb(null, files)
   })
 }
+
+var imageMimeTypes = [
+  'image/bmp',
+  'image/gif',
+  'image/jpeg',
+  'image/png',
+  'image/pjpeg',
+  'image/tiff',
+  'image/webp',
+  'image/x-tiff',
+  'image/x-windows-bmp'
+]
 
 // Runs when the browser has loaded the page
 window.onload = function (){
