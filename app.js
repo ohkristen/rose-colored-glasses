@@ -58,6 +58,29 @@ function findImageFiles(files, folderPath, cb) {
   })
 }
 
+function addImageToPhotosArea (file) {
+  var photosArea = document.getElementId('#photos')
+    var template = document.querySelector('#photo-template')
+    template.content.querySelector('img').src = file.path
+    template.content.querySelector('img').setAttribute('data-name', file.name)
+  var clone = window.document.importNode(template.content, true)
+    photosArea.appendChild(clone)
+}
+
+function bindClickingOnAllPhotos(){
+  var photos = document.querySelectorAll('.photo')
+  for(var i=0; i<photos.length; i++){
+    var photo = photos[i]
+    bindClickingOnAPhoto(photo)
+  }
+}
+
+function bindClickingOnAPhoto(photo){
+  photo.onclick = function(){
+    console.log(this)
+  }
+}
+
 // Runs when the browser has loaded the page
 window.onload = function (){
   bindSelectionFolderClick(function (folderPath){
@@ -65,7 +88,12 @@ window.onload = function (){
     findAllFiles(folderPath, function(err, files){
       if(!err){
         findImageFiles(files, folderPath, function (imageFiles){
-          console.log(imageFiles)
+          imageFiles.forEach(function(file, index){
+            addImageToPhotosArea(file)
+            if(index === imageFiles.length-1){
+              bindClickingOnAllPhotos()
+            }
+          })
         })
       }
     })

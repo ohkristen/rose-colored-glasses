@@ -5,5 +5,20 @@
   "dependencies": {
     "fs": "0.0.2",
     "mime": "^1.3.4"
-  }
+  },
+  "description": "a photo app that allows users to apply filters to photos and save the images to their computer - scotch.io",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohkristen/rose-colored-glasses.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ohkristen/rose-colored-glasses/issues"
+  },
+  "homepage": "https://github.com/ohkristen/rose-colored-glasses#readme"
 }
