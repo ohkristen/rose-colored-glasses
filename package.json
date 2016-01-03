@@ -4,7 +4,8 @@
   "main": "index.html",
   "dependencies": {
     "fs": "0.0.2",
-    "mime": "^1.3.4"
+    "mime": "^1.3.4",
+    "requirejs": "^2.1.22"
   },
   "description": "a photo app that allows users to apply filters to photos and save the images to their computer - scotch.io",
   "devDependencies": {},

@@ -75,9 +75,21 @@ function bindClickingOnAllPhotos(){
   }
 }
 
+function displayPhotoInFullView(){
+  var filePath = photo.querySelector('img').src;
+  var fileName = photo.querySelector('img').attributes[1].value
+  document.querySelector('#fullViewPhoto > img').src = filePath
+  document.querySelector('#fullViewPhoto > img').setAttribute('data-name', fileName)
+  document.querySelector('#fullViewPhoto').style.display = 'block'
+}
+
+function backToGridView(){
+  document.querySelector('#fullViewPhoto').style.display = 'none'
+}
+
 function bindClickingOnAPhoto(photo){
   photo.onclick = function(){
-    console.log(this)
+    displayPhotoInFullView(photo)
   }
 }
 
